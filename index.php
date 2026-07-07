@@ -9,8 +9,8 @@
         </article>
     <?php endwhile; else: ?>
         <section class="text-center py-24">
-            <h2 class="font-headline-md text-headline-md text-primary mb-4"><?php esc_html_e('Nothing Found', 'zeintyres'); ?></h2>
-            <p class="font-body-md text-body-md text-on-surface-variant"><?php esc_html_e('Sorry, no content is available right now.', 'zeintyres'); ?></p>
+            <h2 class="font-headline-md text-headline-md text-primary mb-4"><?php esc_html_e('Nothing Found', 'zein-theme'); ?></h2>
+            <p class="font-body-md text-body-md text-on-surface-variant"><?php esc_html_e('Sorry, no content is available right now.', 'zein-theme'); ?></p>
         </section>
     <?php endif; ?>
 </main>

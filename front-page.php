@@ -90,20 +90,20 @@
                     <h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary uppercase mb-6">Request an Auto Electrical Service</h2>
                     <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Fill out the details below and our team will contact you shortly to confirm your appointment and provide a precise quote.</p>
                     <div class="space-y-6">
-                        <?php $zeintyres_contact_address = zeintyres_get_contact_field('zeintyres_contact_address', null, '12-14 Motto Dr, Coolaroo VIC 3048'); ?>
-                        <?php $zeintyres_open_hours = zeintyres_get_contact_field('zeintyres_open_hours', null, 'Mon-Fri: 9:00am - 5:30pm | Sat: 9:00am - 3:00pm'); ?>
+                        <?php $zeintheme_contact_address = zeintheme_get_contact_field('zeintheme_contact_address', null, '12-14 Motto Dr, Coolaroo VIC 3048'); ?>
+                        <?php $zeintheme_open_hours = zeintheme_get_contact_field('zeintheme_open_hours', null, 'Mon-Fri: 9:00am - 5:30pm | Sat: 9:00am - 3:00pm'); ?>
                         <div class="flex items-center gap-4 border-l-4 border-secondary pl-4">
                             <span class="material-symbols-outlined text-[32px] text-secondary">location_on</span>
                             <div>
                                 <h4 class="font-headline-sm text-headline-sm text-primary uppercase">Address</h4>
-                                <p class="font-body-md text-body-md text-on-surface-variant"><?php echo wp_kses_post(nl2br(esc_html($zeintyres_contact_address))); ?></p>
+                                <p class="font-body-md text-body-md text-on-surface-variant"><?php echo wp_kses_post(nl2br(esc_html($zeintheme_contact_address))); ?></p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 border-l-4 border-secondary pl-4">
                             <span class="material-symbols-outlined text-[32px] text-secondary">schedule</span>
                             <div>
                                 <h4 class="font-headline-sm text-headline-sm text-primary uppercase">Operating Hours</h4>
-                                <p class="font-body-md text-body-md text-on-surface-variant"><?php echo esc_html($zeintyres_open_hours); ?></p>
+                                <p class="font-body-md text-body-md text-on-surface-variant"><?php echo esc_html($zeintheme_open_hours); ?></p>
                             </div>
                         </div>
                     </div>

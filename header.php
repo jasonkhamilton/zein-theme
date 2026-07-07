@@ -16,7 +16,9 @@
                 <?php if (function_exists('has_custom_logo') && has_custom_logo()): ?>
                     <?php echo wp_get_attachment_image(get_theme_mod('custom_logo'), 'full', false, array('class' => 'h-12 w-auto object-contain hidden md:block')); ?>
                 <?php endif; ?>
-                <span class="text-headline-md font-headline-md tracking-tighter text-primary font-bold uppercase"><?php bloginfo('name'); ?></span>
+                <?php if (get_theme_mod('zeintheme_show_site_title', true)): ?>
+                    <span class="text-headline-md font-headline-md tracking-tighter text-primary font-bold uppercase"><?php bloginfo('name'); ?></span>
+                <?php endif; ?>
             </a>
         </div>
         <nav class="hidden md:flex items-center gap-8 ml-auto">
@@ -27,16 +29,16 @@
                     'container' => false,
                     'menu_class' => 'flex items-center gap-8 ml-auto',
                     'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-                    'fallback_cb' => 'zeintyres_menu_fallback',
-                    'walker' => new Zeintyres_Primary_Walker(),
+                    'fallback_cb' => 'zeintheme_menu_fallback',
+                    'walker' => new ZeinTheme_Primary_Walker(),
                 ));
             } else {
-                zeintyres_menu_fallback();
+                zeintheme_menu_fallback();
             }
             ?>
         </nav>
         <div class="flex items-center gap-4 ml-8">
-            <?php $phone_number = zeintyres_get_contact_field('zeintyres_phone_number', null, '0400 000 000'); ?>
+            <?php $phone_number = zeintheme_get_contact_field('zeintheme_phone_number', null, '0400 000 000'); ?>
             <?php $phone_tel = 'tel:' . preg_replace('/[^0-9+]/', '', $phone_number); ?>
             <a class="inline-flex items-center justify-center bg-secondary text-on-secondary font-button-text text-button-text px-6 py-3 uppercase tracking-widest hover:bg-caution-red transition-colors duration-300" href="<?php echo esc_url($phone_tel); ?>">
                 <span>CALL NOW</span>

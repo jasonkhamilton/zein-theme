@@ -16,11 +16,11 @@ get_header(); ?>
         <div class="max-w-container-max mx-auto relative z-10 grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <?php $contact_page_id = get_queried_object_id(); ?>
-                <?php $phone_number = zeintyres_get_contact_field('zeintyres_phone_number', $contact_page_id, '0400 000 000'); ?>
-                <?php $contact_address = zeintyres_get_contact_field('zeintyres_contact_address', $contact_page_id, '12-14 Motto Dr, Coolaroo VIC 3048'); ?>
-                <?php $open_hours = zeintyres_get_contact_field('zeintyres_open_hours', $contact_page_id, 'Mon-Fri: 9:00am - 5:30pm | Sat: 9:00am - 3:00pm'); ?>
+                <?php $phone_number = zeintheme_get_contact_field('zeintheme_phone_number', $contact_page_id, '0400 000 000'); ?>
+                <?php $contact_address = zeintheme_get_contact_field('zeintheme_contact_address', $contact_page_id, '12-14 Motto Dr, Coolaroo VIC 3048'); ?>
+                <?php $open_hours = zeintheme_get_contact_field('zeintheme_open_hours', $contact_page_id, 'Mon-Fri: 9:00am - 5:30pm | Sat: 9:00am - 3:00pm'); ?>
 
-                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Contact Zein Tyres &amp; Wheels</h1>
+                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6">Contact Zein Theme</h1>
                 <p class="font-body-lg text-body-lg text-surface-variant mb-8 max-w-lg">Get in touch for expert mobile tyre fitting, wheel alignments, and professional automotive advice. We're here to keep you moving.</p>
                 <div class="space-y-6">
                     <div class="flex items-start gap-4">
