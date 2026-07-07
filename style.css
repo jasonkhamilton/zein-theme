@@ -1,0 +1,25 @@
+/*
+Theme Name: Zein Tyres
+Theme URI: https://example.com/
+Author: Zein Tyres
+Author URI: https://example.com/
+Description: Custom WordPress theme built from Zein Tyres HTML templates.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: zeintyres
+Tags: custom-background, custom-logo, custom-menu, featured-images, translation-ready
+*/
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-height: 100vh; background: #f8f9fa; }
+img { max-width: 100%; height: auto; display: block; }
+button, input, textarea, select { font: inherit; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* Default WP element reset */
+.wp-block-image img { width: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}
