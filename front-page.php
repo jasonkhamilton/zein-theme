@@ -12,20 +12,20 @@
         <div class="relative z-10 w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
             <div class="max-w-2xl">
                 <div class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-3 py-1 mb-6 uppercase font-label-caps text-label-caps">
-                    <span class="material-symbols-outlined text-[16px]">bolt</span>EXPERT AUTO ELECTRICAL SERVICE
+                    <span class="material-symbols-outlined text-[16px]"><?php echo esc_html( get_theme_mod('front_page_hero_icon', 'bolt') ); ?></span><?php echo esc_html( get_theme_mod('front_page_hero_tag', 'EXPERT AUTO ELECTRICAL SERVICE') ); ?>
                 </div>
                 <h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-overcast-white mb-6 uppercase">
-                    Expert Auto Electrical Service in Melbourne
+                    <?php echo esc_html( get_theme_mod('front_page_hero_title', 'Expert Auto Electrical Service in Melbourne') ); ?>
                 </h1>
                 <p class="font-body-lg text-body-lg text-steel-gray mb-10 max-w-xl">
-                    Specializing in diagnostics, wiring repairs, and battery systems for all makes and models. Fast, reliable, and professional electrical solutions at our Melbourne workshop.
+                    <?php echo esc_html( get_theme_mod('front_page_hero_text', 'Specializing in diagnostics, wiring repairs, and battery systems for all makes and models. Fast, reliable, and professional electrical solutions at our Melbourne workshop.') ); ?>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a class="inline-flex items-center justify-center bg-secondary text-on-secondary font-button-text text-button-text px-8 py-4 uppercase tracking-widest hover:bg-caution-red transition-all duration-300 hover:scale-[1.02]" href="#quote">
-                        Get a Quote
+                    <a class="inline-flex items-center justify-center bg-secondary text-on-secondary font-button-text text-button-text px-8 py-4 uppercase tracking-widest hover:bg-caution-red transition-all duration-300 hover:scale-[1.02]" href="<?php echo esc_url( get_theme_mod('front_page_hero_primary_button_url', '#quote') ); ?>">
+                        <?php echo esc_html( get_theme_mod('front_page_hero_primary_button_text', 'Get a Quote') ); ?>
                     </a>
-                    <a class="inline-flex items-center justify-center border-2 border-outline-variant text-overcast-white font-button-text text-button-text px-8 py-4 uppercase tracking-widest hover:bg-surface-variant/10 transition-all duration-300" href="#services">
-                        Explore Services
+                    <a class="inline-flex items-center justify-center border-2 border-outline-variant text-overcast-white font-button-text text-button-text px-8 py-4 uppercase tracking-widest hover:bg-surface-variant/10 transition-all duration-300" href="<?php echo esc_url( get_theme_mod('front_page_hero_secondary_button_url', '#services') ); ?>">
+                        <?php echo esc_html( get_theme_mod('front_page_hero_secondary_button_text', 'Explore Services') ); ?>
                     </a>
                 </div>
             </div>

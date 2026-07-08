@@ -49,7 +49,97 @@ function zeintheme_sanitize_checkbox($checked) {
     return (isset($checked) && ($checked === true || $checked === '1' || $checked === 1)) ? true : false;
 }
 
+function zeintheme_sanitize_url($url) {
+    return esc_url_raw($url);
+}
+
 function zeintheme_customize_register($wp_customize) {
+    $wp_customize->add_section('zeintheme_front_page_section', array(
+        'title' => __('Front Page', 'zein-theme'),
+        'priority' => 25,
+    ));
+
+    $wp_customize->add_setting('front_page_hero_tag', array(
+        'default' => 'EXPERT AUTO ELECTRICAL SERVICE',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('front_page_hero_tag', array(
+        'label' => __('Hero Tag', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('front_page_hero_icon', array(
+        'default' => 'bolt',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('front_page_hero_icon', array(
+        'label' => __('Hero Icon', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'text',
+        'description' => __('Use a Material Symbols icon name, e.g. bolt.', 'zein-theme'),
+    ));
+
+    $wp_customize->add_setting('front_page_hero_title', array(
+        'default' => 'Expert Auto Electrical Service in Melbourne',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('front_page_hero_title', array(
+        'label' => __('Hero Title', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('front_page_hero_text', array(
+        'default' => 'Specializing in diagnostics, wiring repairs, and battery systems for all makes and models. Fast, reliable, and professional electrical solutions at our Melbourne workshop.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('front_page_hero_text', array(
+        'label' => __('Hero Text', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('front_page_hero_primary_button_text', array(
+        'default' => 'Get a Quote',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('front_page_hero_primary_button_text', array(
+        'label' => __('Primary Button Text', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('front_page_hero_primary_button_url', array(
+        'default' => '#quote',
+        'sanitize_callback' => 'zeintheme_sanitize_url',
+    ));
+    $wp_customize->add_control('front_page_hero_primary_button_url', array(
+        'label' => __('Primary Button URL', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'url',
+    ));
+
+    $wp_customize->add_setting('front_page_hero_secondary_button_text', array(
+        'default' => 'Explore Services',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('front_page_hero_secondary_button_text', array(
+        'label' => __('Secondary Button Text', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('front_page_hero_secondary_button_url', array(
+        'default' => '#services',
+        'sanitize_callback' => 'zeintheme_sanitize_url',
+    ));
+    $wp_customize->add_control('front_page_hero_secondary_button_url', array(
+        'label' => __('Secondary Button URL', 'zein-theme'),
+        'section' => 'zeintheme_front_page_section',
+        'type' => 'url',
+    ));
+
     $wp_customize->add_section('zeintheme_contact_section', array(
         'title' => __('Contact', 'zein-theme'),
         'priority' => 30,
