@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="border-t border-surface-variant/20 py-6 text-center">
-        <p class="font-body-md text-body-md text-steel-gray text-sm">© <?php echo date('Y'); ?> Zein Theme. Professional Mobile Service.</p>
+        <p class="font-body-md text-body-md text-steel-gray text-sm">© <?php echo date('Y'); ?> <?php echo esc_html(get_bloginfo('name')); ?></p>
     </div>
 </footer>
 <?php wp_footer(); ?>

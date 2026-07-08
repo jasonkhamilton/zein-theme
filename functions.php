@@ -194,6 +194,25 @@ function zeintheme_customize_register($wp_customize) {
         'section' => 'zeintheme_contact_section',
         'type' => 'text',
     ));
+    $wp_customize->add_setting('zeintheme_contact_shortcode', array(
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+    $wp_customize->add_control('zeintheme_contact_shortcode', array(
+        'label' => __('Contact Form 7 Shortcode', 'zein-theme'),
+        'section' => 'zeintheme_contact_section',
+        'type' => 'text',
+        'description' => __('Paste the Contact Form 7 shortcode to display in the front-page contact form area.', 'zein-theme'),
+    ));
+    $wp_customize->add_setting('zeintheme_contact_address', array(
+        'default' => '12-14 Motto Dr, Coolaroo VIC 3048',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('zeintheme_contact_address', array(
+        'label' => __('Address', 'zein-theme'),
+        'section' => 'zeintheme_contact_section',
+        'type' => 'textarea',
+    ));
 
     $wp_customize->add_setting('zeintheme_primary_color', array(
         'default' => '#000000',

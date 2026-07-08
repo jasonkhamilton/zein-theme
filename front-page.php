@@ -87,8 +87,8 @@
         <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div>
-                    <h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary uppercase mb-6">Request an Auto Electrical Service</h2>
-                    <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Fill out the details below and our team will contact you shortly to confirm your appointment and provide a precise quote.</p>
+                    <h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary uppercase mb-6">Request a Service</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Fill out the details below and our team will contact you shortly to confirm your appointment.</p>
                     <div class="space-y-6">
                         <?php $zeintheme_contact_address = zeintheme_get_contact_field('zeintheme_contact_address', null, '12-14 Motto Dr, Coolaroo VIC 3048'); ?>
                         <?php $zeintheme_open_hours = zeintheme_get_contact_field('zeintheme_open_hours', null, 'Mon-Fri: 9:00am - 5:30pm | Sat: 9:00am - 3:00pm'); ?>
@@ -110,37 +110,14 @@
                 </div>
                 <div class="bg-surface-container-lowest p-8 border border-outline-variant shadow-sm relative">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-surface-variant to-transparent opacity-50"></div>
-                    <form class="space-y-6 relative z-10">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Full Name</label>
-                                <input class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-secondary focus:ring-0 px-0 py-3 font-body-md text-primary transition-colors" placeholder="John Doe" type="text">
-                            </div>
-                            <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Phone Number</label>
-                                <input class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-secondary focus:ring-0 px-0 py-3 font-body-md text-primary transition-colors" placeholder="0400 000 000" type="tel">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Vehicle Make &amp; Model</label>
-                                <input class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-secondary focus:ring-0 px-0 py-3 font-body-md text-primary transition-colors" placeholder="e.g. Toyota Hilux 2022" type="text">
-                            </div>
-                            <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Suburb</label>
-                                <input class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-secondary focus:ring-0 px-0 py-3 font-body-md text-primary transition-colors" placeholder="e.g. Coolaroo" type="text">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Service Required</label>
-                            <input class="w-full bg-surface border-0 border-b-2 border-outline-variant focus:border-secondary focus:ring-0 px-0 py-3 font-body-md text-primary transition-colors" placeholder="e.g. Battery replacement, wiring repair, check engine light" type="text">
-                        </div>
-                        <!-- <div class="flex items-center gap-3 py-2">
-                            <input id="parking-checkbox" type="checkbox" class="w-5 h-5 border-2 border-outline-variant text-secondary focus:ring-secondary rounded-sm bg-surface transition-colors cursor-pointer">
-                            <label for="parking-checkbox" class="font-label-caps text-label-caps text-on-surface-variant uppercase cursor-pointer">Need a courtesy vehicle?</label>
-                        </div> -->
-                        <button class="w-full bg-primary text-on-primary font-button-text text-button-text py-4 uppercase tracking-widest hover:bg-secondary transition-colors duration-300 mt-4" type="button">Submit Request</button>
-                    </form>
+                    <div class="relative z-10">
+                        <?php $zeintheme_contact_shortcode = get_theme_mod('zeintheme_contact_shortcode', ''); ?>
+                        <?php if (!empty($zeintheme_contact_shortcode)) : ?>
+                            <?php echo do_shortcode($zeintheme_contact_shortcode); ?>
+                        <?php else : ?>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Set a Contact Form 7 shortcode in the Customizer to display the form here.</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
