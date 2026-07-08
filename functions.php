@@ -53,6 +53,29 @@ function zeintheme_sanitize_url($url) {
     return esc_url_raw($url);
 }
 
+function zeintheme_sanitize_hex_color($color) {
+    return sanitize_hex_color($color);
+}
+
+function zeintheme_get_contrast_color($hex_color) {
+    $hex_color = ltrim($hex_color, '#');
+
+    if (strlen($hex_color) === 3) {
+        $hex_color = $hex_color[0] . $hex_color[0] . $hex_color[1] . $hex_color[1] . $hex_color[2] . $hex_color[2];
+    }
+
+    if (strlen($hex_color) !== 6) {
+        return '#ffffff';
+    }
+
+    $red = hexdec(substr($hex_color, 0, 2));
+    $green = hexdec(substr($hex_color, 2, 2));
+    $blue = hexdec(substr($hex_color, 4, 2));
+    $luminance = (0.2126 * $red + 0.7152 * $green + 0.0722 * $blue) / 255;
+
+    return $luminance > 0.6 ? '#111111' : '#ffffff';
+}
+
 function zeintheme_customize_register($wp_customize) {
     $wp_customize->add_section('zeintheme_front_page_section', array(
         'title' => __('Front Page', 'zein-theme'),
@@ -172,6 +195,50 @@ function zeintheme_customize_register($wp_customize) {
         'type' => 'text',
     ));
 
+    $wp_customize->add_setting('zeintheme_primary_color', array(
+        'default' => '#000000',
+        'sanitize_callback' => 'zeintheme_sanitize_hex_color',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'zeintheme_primary_color', array(
+        'label' => __('Primary Color', 'zein-theme'),
+        'section' => 'title_tagline',
+        'description' => __('Controls the main brand color used across headings, buttons, and key accents.', 'zein-theme'),
+    )));
+
+    $wp_customize->add_setting('zeintheme_secondary_color', array(
+        'default' => '#b7102a',
+        'sanitize_callback' => 'zeintheme_sanitize_hex_color',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'zeintheme_secondary_color', array(
+        'label' => __('Secondary Color', 'zein-theme'),
+        'section' => 'title_tagline',
+        'description' => __('Controls secondary highlights and call-to-action accents.', 'zein-theme'),
+    )));
+
+    $wp_customize->add_setting('zeintheme_background_color', array(
+        'default' => '#f8f9fa',
+        'sanitize_callback' => 'zeintheme_sanitize_hex_color',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'zeintheme_background_color', array(
+        'label' => __('Background Color', 'zein-theme'),
+        'section' => 'title_tagline',
+        'description' => __('Sets the overall page background color.', 'zein-theme'),
+    )));
+
+    $wp_customize->add_setting('zeintheme_surface_color', array(
+        'default' => '#ffffff',
+        'sanitize_callback' => 'zeintheme_sanitize_hex_color',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'zeintheme_surface_color', array(
+        'label' => __('Surface Color', 'zein-theme'),
+        'section' => 'title_tagline',
+        'description' => __('Sets the color for cards, panels, and other surface elements.', 'zein-theme'),
+    )));
+
     $wp_customize->add_setting('zeintheme_show_site_title', array(
         'default' => true,
         'sanitize_callback' => 'zeintheme_sanitize_checkbox',
@@ -189,6 +256,45 @@ function zeintheme_enqueue_assets() {
     wp_enqueue_style('zeintheme-google-fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@700&display=swap', array(), null);
     wp_enqueue_style('zeintheme-material-icons', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap', array(), null);
     wp_enqueue_style('zeintheme-theme-style', get_stylesheet_directory_uri() . '/assets/css/theme.css', array(), filemtime(get_stylesheet_directory() . '/assets/css/theme.css'));
+
+    $primary_color = get_theme_mod('zeintheme_primary_color', '#000000');
+    $secondary_color = get_theme_mod('zeintheme_secondary_color', '#b7102a');
+    $background_color = get_theme_mod('zeintheme_background_color', '#f8f9fa');
+    $surface_color = get_theme_mod('zeintheme_surface_color', '#ffffff');
+    $on_primary_color = zeintheme_get_contrast_color($primary_color);
+    $on_secondary_color = zeintheme_get_contrast_color($secondary_color);
+
+    $custom_css = sprintf("
+        :root {
+            --zein-primary: %s;
+            --zein-secondary: %s;
+            --zein-background: %s;
+            --zein-surface: %s;
+            --zein-on-primary: %s;
+            --zein-on-secondary: %s;
+            --zein-on-surface: #191c1d;
+            --zein-on-surface-variant: #444748;
+            --zein-outline: #747878;
+            --zein-outline-variant: #e1e3e4;
+        }
+        .bg-background { background-color: var(--zein-background) !important; }
+        .text-primary, .hover\\:text-primary:hover { color: var(--zein-primary) !important; }
+        .bg-primary, .hover\\:bg-primary:hover { background-color: var(--zein-primary) !important; }
+        .border-primary, .focus\\:border-primary:focus { border-color: var(--zein-primary) !important; }
+        .text-secondary, .hover\\:text-secondary:hover { color: var(--zein-secondary) !important; }
+        .bg-secondary, .hover\\:bg-secondary:hover { background-color: var(--zein-secondary) !important; }
+        .border-secondary, .focus\\:border-secondary:focus { border-color: var(--zein-secondary) !important; }
+        .text-on-primary { color: var(--zein-on-primary) !important; }
+        .bg-on-primary { background-color: var(--zein-on-primary) !important; }
+        .text-on-secondary { color: var(--zein-on-secondary) !important; }
+        .bg-on-secondary { background-color: var(--zein-on-secondary) !important; }
+        .bg-surface { background-color: var(--zein-surface) !important; }
+        .text-on-surface { color: var(--zein-on-surface) !important; }
+        .text-on-surface-variant { color: var(--zein-on-surface-variant) !important; }
+        .border-outline { border-color: var(--zein-outline) !important; }
+        .border-outline-variant { border-color: var(--zein-outline-variant) !important; }
+    ", esc_attr($primary_color), esc_attr($secondary_color), esc_attr($background_color), esc_attr($surface_color), esc_attr($on_primary_color), esc_attr($on_secondary_color));
+    wp_add_inline_style('zeintheme-theme-style', $custom_css);
 
     wp_register_script('zeintheme-tailwind', 'https://cdn.tailwindcss.com?plugins=forms,container-queries', array(), null, false);
     wp_enqueue_script('zeintheme-tailwind');

@@ -3,8 +3,14 @@
 <footer class="bg-tarmac-black text-overcast-white border-t-4 border-secondary">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto text-center md:text-left">
         <div class="space-y-4">
-            <img alt="<?php echo esc_attr(get_bloginfo('name')); ?> Logo" class="h-16 mx-auto md:mx-0 object-contain mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPhSuJVyJW_3r5VicOIHjzR0CvLIbUxSTLL1DqD5D7vtfCbPqftdxvbyL9CH0hlgZIDQ2kif9Wvli6UEWJkcWHIKL7HcHXrJaeKka_SARUC2u79TDAYWpzROpy5-O397abUfDJZxOxjUwCZTM4m6-S-HSaf2sNO8KyHObRfnRGQPdgJp2ypIyhTB3w0bI_LUCxsM3wUddelIw3P2btCpS1a9oJCm7mNhCMFW18ESaGqpvoZ2LEyyYI7EjJzccFQ0kRl_8n59Ip1w">
-            <p class="font-headline-sm text-headline-sm font-bold text-overcast-white uppercase"><?php echo esc_html(get_bloginfo('name')); ?></p>
+            <?php $custom_logo_id = get_theme_mod('custom_logo'); ?>
+            <?php if (!empty($custom_logo_id)) : ?>
+                <div class="mb-4 flex justify-center md:justify-start">
+                    <?php echo wp_get_attachment_image($custom_logo_id, 'full', false, array('class' => 'h-16 mx-auto md:mx-0 object-contain', 'alt' => get_bloginfo('name'))); ?>
+                </div>
+            <?php else : ?>
+                <p class="font-headline-sm text-headline-sm font-bold text-overcast-white uppercase"><?php echo esc_html(get_bloginfo('name')); ?></p>
+            <?php endif; ?>
             <?php $footer_address = zeintheme_get_contact_field('zeintheme_contact_address', null, '12-14 Motto Dr, Coolaroo VIC 3048'); ?>
             <p class="font-body-md text-body-md text-steel-gray"><?php echo wp_kses_post(nl2br(esc_html($footer_address))); ?></p>
         </div>
